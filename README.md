@@ -3,7 +3,12 @@ Erick Felipe Mendes Galvez
 
 # Atividade Collisores 2.0
 Atividade passada pela orientadora Aline Firmino, Desenvolver uma cena aplicado cada um dos tipos de colisores 3D.
-Devem ser utilizados todos os tipos de colisões e Triggers,depois acrescentar as
+Devem ser utilizados todos os tipos de colisões e Triggers,depois acrescentar as seguintes coisas:
+Criar um Menu
+no jogo principal incluir um HUD dinâmico
+Utilizar uma colisão para finalizar o jogo e ir para uma cena de créditos/fim de jogo
+Nos créditos inserir a opção de fechar o jogo, reiniciar ou voltar para o menu inicial
+O ReadMe deve ser atualizado com as informações e explicação das alterações
 
 ## Requisitos
 Para ver essa cena é preciso o Unity com a versão 2021.3.26f1
@@ -181,3 +186,54 @@ O método Update() é chamado a cada quadro do jogo. Nele, o script calcula um d
 
 
 ## Atualiçoes feitas
+
+para essa atualizacao foram criadas 2 scrips para serem anexados em 2 canvas, tambem foi adicionado 1 timer para o hud.
+
+![Captura de tela 2023-11-20 190147](https://github.com/ErickFGalvez/CollisoresUnity_2/assets/128325280/3729c449-d3b7-4ada-a0a0-6676d545129d)
+
+foi adicionado esse script nesse canvas
+
+![Captura de tela 2023-11-20 190219](https://github.com/ErickFGalvez/CollisoresUnity_2/assets/128325280/90c2a36d-0065-4ea4-bbc3-db25fad660f3)
+
+segue a explicaçao e codigo comentado
+
+## README
+Menu Principal Unity
+Este é um script simples para um menu principal em um jogo Unity. Ele inclui funcionalidades básicas de iniciar o jogo e sair.
+
+Instruções de Uso:
+Anexando ao GameObject:
+
+Anexe este script a um objeto no seu cena Unity que servirá como o menu principal.
+Configurações no Editor:
+
+No Editor Unity, você verá uma nova seção no script chamada "Nome do Level de Jogo". Aqui, insira o nome da cena que você deseja carregar quando o jogador clicar em "Jogar".
+Funções do Menu:
+
+Jogar(): Carrega a cena especificada no campo nomeDoLevelDeJogo usando o SceneManager.LoadScene.
+Sair(): Exibe uma mensagem de log indicando que o jogo está saindo e chama Application.Quit() para encerrar a aplicação (somente funciona em builds standalone).
+
+
+public class MenuPrincipal : MonoBehaviour
+{
+    // Nome da cena que será carregada ao clicar em "Jogar"
+    [SerializeField] private string nomeDoLevelDeJogo;
+
+    // Função chamada quando o botão "Jogar" é pressionado
+    public void Jogar()
+    {
+        // Carrega a cena especificada usando o SceneManager
+        SceneManager.LoadScene(nomeDoLevelDeJogo);
+    }
+
+    // Função chamada quando o botão "Sair" é pressionado
+    public void Sair()
+    {
+        // Exibe uma mensagem de log indicando que o jogo está saindo
+        Debug.Log("Sair do Jogo");
+        
+        // Encerra a aplicação (funciona apenas em builds standalone)
+        Application.Quit();
+    }
+}
+

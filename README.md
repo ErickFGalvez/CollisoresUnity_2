@@ -237,3 +237,114 @@ public class MenuPrincipal : MonoBehaviour
     }
 }
 
+![Captura de tela 2023-11-20 191102](https://github.com/ErickFGalvez/CollisoresUnity_2/assets/128325280/d113ea2a-0001-49c2-97d4-8776a23ff72d)
+
+Codigos adicionados nesse canvas
+
+![Captura de tela 2023-11-20 191209](https://github.com/ErickFGalvez/CollisoresUnity_2/assets/128325280/8236be69-d773-4a5c-bf06-31662e5277ec)
+
+segue o codigo de reiniciar explicado e comentado
+
+## README
+
+Botão de Retorno ao Menu Unity
+Este script Unity implementa um botão simples que, quando pressionado, reinicia o jogo carregando a cena especificada no campo "Nome do Level de Jogo".
+
+Instruções de Uso:
+Anexando ao GameObject:
+
+Anexe este script a um objeto na sua cena Unity que servirá como um botão para retornar ao menu.
+Configurações no Editor:
+
+No Editor Unity, você verá uma nova seção no script chamada "Nome do Level de Jogo". Aqui, insira o nome da cena que você deseja carregar quando o jogador clicar em "Reiniciar".
+Função do Botão:
+
+Reiniciar(): Carrega a cena especificada no campo nomeDoLevelDeJogo usando o SceneManager.LoadScene.
+
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class BackToMenuButton : MonoBehaviour
+{
+    // Nome da cena que será carregada ao clicar em "Reiniciar"
+    [SerializeField] private string nomeDoLevelDeJogo;
+
+    // Função chamada quando o botão "Reiniciar" é pressionado
+    public void Reiniciar()
+    {
+        // Carrega a cena especificada usando o SceneManager
+        SceneManager.LoadScene(nomeDoLevelDeJogo);
+    }
+}
+
+segue codigo do timer explicado e comentado
+
+## README
+
+Contador de Tempo Unity
+Este script Unity implementa um contador de tempo simples, exibindo minutos e segundos em um componente de texto (TMP_Text).
+
+Instruções de Uso:
+Anexando ao GameObject:
+
+Anexe este script a um objeto na sua cena Unity que servirá como o contador de tempo.
+Configurações no Editor:
+
+No Editor Unity, configure o campo "Txt Time" arrastando e soltando um componente TMP_Text que exibirá o tempo.
+Defina o tempo inicial no campo "Time Value".
+Funcionalidades:
+
+O contador de tempo aumenta a cada segundo e exibe o tempo formatado em minutos e segundos no componente de texto.
+
+using UnityEngine;
+using TMPro;
+
+public class Timer : MonoBehaviour
+{
+    // Componente de texto para exibir o tempo
+    [SerializeField] private TMP_Text txttime;
+    
+    // Valor inicial do tempo
+    [SerializeField] private float timeValue;
+
+    // Método chamado quando o script é inicializado
+    void Start()
+    {
+        // Invoca repetidamente o método "IncreaseTime" a cada segundo
+        InvokeRepeating("IncreaseTime", 1f, 1f);
+    }
+
+    // Método para aumentar o tempo
+    private void IncreaseTime()
+    {
+        // Se o tempo for menor que zero, não faz nada
+        if (timeValue < 0f) return;
+
+        // Incrementa o valor do tempo
+        timeValue++;
+
+        // Exibe o tempo atualizado
+        DisplayTime(timeValue);
+    }
+
+    // Método para exibir o tempo formatado no componente de texto
+    private void DisplayTime(float timeToDisplay)
+    {
+        // Garante que o tempo exibido nunca seja negativo
+        if (timeToDisplay < 0f)
+        {
+            timeToDisplay = 0f;
+        }
+
+        // Calcula minutos e segundos a partir do tempo total
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+        // Formata o tempo como minutos:segundos e exibe no componente de texto
+        txttime.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+}
+
+# Segue link do video do codigo funcionando
+
+
